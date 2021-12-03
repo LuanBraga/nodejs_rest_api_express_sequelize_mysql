@@ -1,0 +1,33 @@
+{
+  "name": "nodejs_rest_api_express_sequelize_mysql",
+  "version": "1.0.0",
+  "description": "api with nodejs, expressJs, sequelize and mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuanBraga/nodejs_rest_api_express_sequelize_mysql.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize",
+    "mysql",
+    "rest",
+    "api"
+  ],
+  "author": "Luan Braga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuanBraga/nodejs_rest_api_express_sequelize_mysql/issues"
+  },
+  "homepage": "https://github.com/LuanBraga/nodejs_rest_api_express_sequelize_mysql#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.0-alpha.1"
+  }
+}
