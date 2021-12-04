@@ -1,6 +1,13 @@
 module.exports = {
     HOST: 'localhost',
-    USER: 'root',
+    USER: 'user',
     PASSWORD: '123456',
-    DB: 'algafood'
+    DB: 'db',
+    dialect: 'mysql',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
 }
