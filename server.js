@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 8081;
+const db = require('./app/models');
 
 const app = express();
 
@@ -26,3 +27,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
 });
+
+db.sequelize.sync();
