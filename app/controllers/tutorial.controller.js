@@ -63,19 +63,19 @@ exports.findAll = () => {
 };
 
 //Retrieve all tutorials from the database
-exports.findAll = (req, res) => {};
+// exports.findAll = (req, res) => {};
 
 //Find a single tutorial with an id
-exports.findOne = (req, res) => {};
+// exports.findOne = (req, res) => {};
 
 //Update a tutorial by the id in the request
-exports.update = (req, res) => {};
+// exports.update = (req, res) => {};
 
 //Delete a tutorials with the specified id in the request
-exports.delete = (req, res) => {};
+// exports.delete = (req, res) => {};
 
 //Delete all tutorials from the database
-exports.deleteAll = (req, res) => {};
+// exports.deleteAll = (req, res) => {};
 
 //Find all published Tutorials
-exports.findAllPublished = (req, res) => {};
+// exports.findAllPublished = (req, res) => {};
