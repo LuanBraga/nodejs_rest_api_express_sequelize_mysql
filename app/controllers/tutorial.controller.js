@@ -3,63 +3,65 @@ const Tutorial = db.tutorials;
 const Comment = db.comments;
 const Op = db.Sequelize.Op;
 
+
+// exports.createTutorial = (tutorial) => {
+//     return Tutorial.create({
+//         title: tutorial.title,
+//         description: tutorial.description
+//     })
+//     .then((tutorial) => {
+//         console.log('>> Created tutorial: ' + JSON.stringify(tutorial, null, 4));
+//         return tutorial;
+//     })
+//     .catch((err) => {
+//         console.log('>> Error while creating tutorial: ', err);
+//     });
+// };
+
+
+// exports.findTutorialById = (tutorialId) => {
+//     return Tutorial.findByPk(tutorialId, { include: ["comments"] })
+//         .then((tutorial) => {
+//         return tutorial;
+//     })
+//     .catch((err) => {
+//         console.log(">> Error while finding tutorial: ", err);
+//     });
+// };
+
+
+// exports.findAll = () => {
+//     return Tutorial.findAll({
+//       include: ["comments"],
+//     }).then((tutorials) => {
+//       return tutorials;
+//     });
+// };
+
 //Create and save tutorial
-// exports.create = (req, res) => {};
-exports.createTutorial = (tutorial) => {
-    return Tutorial.create({
-        title: tutorial.title,
-        description: tutorial.description
-    })
-    .then((tutorial) => {
-        console.log('>> Created tutorial: ' + JSON.stringify(tutorial, null, 4));
-        return tutorial;
-    })
-    .catch((err) => {
-        console.log('>> Error while creating tutorial: ', err);
-    });
-};
+exports.create = (req, res) => {
+    if (!req.body.title) {
+        res.status(400).send({
+            message: 'Content can be empty!'
+        });
+        return;
+    }
 
-exports.createComment = (tutorialId ,comment) => {
-    return Comment.create({
-        name: comment.name,
-        text: comment.text,
-        tutorialId: tutorialId
-    })
-    .then((comment) => {
-        console.log('>> Created comment: ' + JSON.stringify(comment, null, 4));
-        return comment;
-    })
-    .catch((err) => {
-        console.log('>> Error while creating comment: ', err);
-    });
-};
+    const tutorial = {
+        title: req.body.title,
+        description: req.body.description,
+        published: req.body.published ? req.body.published : false
+    };
 
-exports.findTutorialById = (tutorialId) => {
-    return Tutorial.findByPk(tutorialId, { include: ["comments"] })
-        .then((tutorial) => {
-        return tutorial;
-    })
-    .catch((err) => {
-        console.log(">> Error while finding tutorial: ", err);
-    });
-};
-
-exports.findCommentById = (id) => {
-    return Comment.findByPk(id, { include: ["tutorial"] })
-        .then((comment) => {
-        return comment;
-    })
-    .catch((err) => {
-        console.log(">> Error while finding comment: ", err);
-    });
-};
-
-exports.findAll = () => {
-    return Tutorial.findAll({
-      include: ["comments"],
-    }).then((tutorials) => {
-      return tutorials;
-    });
+    Tutorial.create(Tutorial)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || 'Some error occurred while creating the Tutorial.'
+            });
+        });
 };
 
 //Retrieve all tutorials from the database
