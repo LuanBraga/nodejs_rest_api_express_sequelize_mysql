@@ -53,7 +53,7 @@ exports.create = (req, res) => {
         published: req.body.published ? req.body.published : false
     };
 
-    Tutorial.create(Tutorial)
+    Tutorial.create(tutorial)
         .then(data => {
             res.send(data);
         })
@@ -67,7 +67,7 @@ exports.create = (req, res) => {
 //Retrieve all tutorials from the database
 exports.findAll = (req, res) => {
     const title = req.query.title;
-    var condition = title ? {title: { [Op.like]: '%${title}%'} } : null;
+    var condition = title ? {title: { [Op.like]: `%${title}%`} } : null;
 
     Tutorial.findAll({where: condition})
         .then(data => {
@@ -81,7 +81,25 @@ exports.findAll = (req, res) => {
 };
 
 //Find a single tutorial with an id
-// exports.findOne = (req, res) => {};
+exports.findOne = (req, res) => {
+    const id = req.params.id;
+    
+    Tutorial.findByPk(id)
+        .then(data => {
+            if (data) {
+                res.send(data);
+            }else {
+                res.status(404).send({
+                    message: `Cannot find tutorial with id = ${id}` 
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: `${err.message}` || `Some error occurred while retrieving tutorial with id = ${id}`
+            })
+        })
+};
 
 //Update a tutorial by the id in the request
 // exports.update = (req, res) => {};
