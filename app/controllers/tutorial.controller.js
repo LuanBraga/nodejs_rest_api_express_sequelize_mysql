@@ -1,42 +1,6 @@
 const db = require('../models');
-const Tutorial = db.tutorials;
-const Comment = db.comments;
+const Tutorial = db.tutorial;
 const Op = db.Sequelize.Op;
-
-
-// exports.createTutorial = (tutorial) => {
-//     return Tutorial.create({
-//         title: tutorial.title,
-//         description: tutorial.description
-//     })
-//     .then((tutorial) => {
-//         console.log('>> Created tutorial: ' + JSON.stringify(tutorial, null, 4));
-//         return tutorial;
-//     })
-//     .catch((err) => {
-//         console.log('>> Error while creating tutorial: ', err);
-//     });
-// };
-
-
-// exports.findTutorialById = (tutorialId) => {
-//     return Tutorial.findByPk(tutorialId, { include: ["comments"] })
-//         .then((tutorial) => {
-//         return tutorial;
-//     })
-//     .catch((err) => {
-//         console.log(">> Error while finding tutorial: ", err);
-//     });
-// };
-
-
-// exports.findAll = () => {
-//     return Tutorial.findAll({
-//       include: ["comments"],
-//     }).then((tutorials) => {
-//       return tutorials;
-//     });
-// };
 
 //Create and save tutorial
 exports.create = (req, res) => {
@@ -69,7 +33,7 @@ exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? {title: { [Op.like]: `%${title}%`} } : null;
 
-    Tutorial.findAll({where: condition})
+    Tutorial.findAll({where: condition, include: ["comments"]})
         .then(data => {
             res.send(data);
         })
@@ -84,7 +48,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
     
-    Tutorial.findByPk(id)
+    Tutorial.findByPk(id, {include: ["comments"]})
         .then(data => {
             if (data) {
                 res.send(data);
@@ -174,3 +138,37 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
+
+// exports.createTutorial = (tutorial) => {
+//     return Tutorial.create({
+//         title: tutorial.title,
+//         description: tutorial.description
+//     })
+//     .then((tutorial) => {
+//         console.log('>> Created tutorial: ' + JSON.stringify(tutorial, null, 4));
+//         return tutorial;
+//     })
+//     .catch((err) => {
+//         console.log('>> Error while creating tutorial: ', err);
+//     });
+// };
+
+
+// exports.findTutorialById = (tutorialId) => {
+//     return Tutorial.findByPk(tutorialId, { include: ["comments"] })
+//         .then((tutorial) => {
+//         return tutorial;
+//     })
+//     .catch((err) => {
+//         console.log(">> Error while finding tutorial: ", err);
+//     });
+// };
+
+
+// exports.findAll = () => {
+//     return Tutorial.findAll({
+//       include: ["comments"],
+//     }).then((tutorials) => {
+//       return tutorials;
+//     });
+// };

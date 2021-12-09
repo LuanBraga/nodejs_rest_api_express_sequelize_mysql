@@ -1,5 +1,5 @@
 const db = require('../models');
-const Comment = db.comments;
+const Comment = db.comment;
 const Op = db.sequelize.Op;
 
 exports.createComment = (tutorialId ,comment) => {

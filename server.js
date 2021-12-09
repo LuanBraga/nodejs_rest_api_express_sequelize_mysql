@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8082;
 const db = require('./app/models/');
 const tutorialController = require('./app/controllers/tutorial.controller');
-const commentController = require('./app/controllers/comments.controller');
+const commentController = require('./app/controllers/comment.controller');
 
 const app = express();
 
