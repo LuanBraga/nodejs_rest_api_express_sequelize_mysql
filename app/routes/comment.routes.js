@@ -5,13 +5,13 @@ module.exports = app => {
 
     router.post('/', comment.create);
 
-    // router.get();
-    // router.get();
+    router.get('/', comment.findAll);
+    router.get('/:id', comment.findOne);
     // router.get();
 
-    // router.put();
+    router.put('/id', comment.update);
 
-    // router.delete();
+    router.delete('/:id', comment.delete);
     // router.delete();
 
     app.use('/api/comments', router);
