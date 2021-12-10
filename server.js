@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 8082;
 const db = require('./app/models/');
-const tutorialController = require('./app/controllers/tutorial.controller');
-const commentController = require('./app/controllers/comment.controller');
+// const tutorialController = require('./app/controllers/tutorial.controller');
+// const commentController = require('./app/controllers/comment.controller');
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Include routes
 require('./app/routes/tutorial.routes')(app);
+require('./app/routes/comment.routes')(app);
 
 //set port, listen for requests
 app.listen(PORT, () => {

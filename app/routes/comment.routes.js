@@ -3,16 +3,16 @@ module.exports = app => {
 
     var router = require('express').Router();
 
-    router.post();
+    router.post('/', comment.create);
 
-    router.get();
-    router.get();
-    router.get();
+    // router.get();
+    // router.get();
+    // router.get();
 
-    router.put();
+    // router.put();
 
-    router.delete();
-    router.delete();
+    // router.delete();
+    // router.delete();
 
     app.use('/api/comments', router);
 }
