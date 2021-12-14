@@ -27,7 +27,7 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-    Comment.findAll({include: ["tutorial"]})
+    Comment.findAll()
         .then(data => {
             res.send(data);
         })
